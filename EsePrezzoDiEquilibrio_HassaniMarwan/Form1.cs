@@ -23,24 +23,43 @@ namespace EsePrezzoDiEquilibrio_HassaniMarwan
             dataGridView1.Columns.Add("ddomanda", "domanda");
             dataGridView1.Columns.Add("offerta", "offerta");
 
+            this.Controls.Add(this.labelDomanda);
+            this.Controls.Add(this.textBoxDomanda);
+            this.Controls.Add(this.labelOfferta);
+            this.Controls.Add(this.textBoxOfferta);
+
             // Imposto il font generale della form
             this.Font = new System.Drawing.Font("Segoe UI", 10F);
         }
 
         private void button1_Click_1(object sender, EventArgs e)
         {
-            // Pulisco eventuali dati precedenti nella tabella
             dataGridView1.Rows.Clear();
 
-            // 1) Valori iniziali
+            // 1) Lettura dinamica da TextBox
+            double oIniziale, dIniziale;
+
+            if (!double.TryParse(textBoxOfferta.Text, out oIniziale))
+            {
+                MessageBox.Show("Inserisci un valore numerico valido per l'offerta iniziale.");
+                return;
+            }
+
+            if (!double.TryParse(textBoxDomanda.Text, out dIniziale))
+            {
+                MessageBox.Show("Inserisci un valore numerico valido per la domanda iniziale.");
+                return;
+            }
+
+            // curva domanda: D(q) = dIniziale − 4q
+            // curva offerta: O(q) = oIniziale + q³/100
+
             double q = 0.0;
-            double d = 90 - 4 * q;
-            double o = 10 + Math.Pow(q, 3) / 100.0;
-            double dIniziale = 90;
-            double oIniziale = 10;
+            double d = dIniziale - 4 * q;
+            double o = oIniziale + Math.Pow(q, 3) / 100.0;
+
             dataGridView1.Rows.Add(q, d, o);
 
-            // 2) Ricerca approssimativa del punto di equilibrio
             double step = 1.0;
             double minStep = 0.0001;
             bool superato = false;
@@ -51,8 +70,9 @@ namespace EsePrezzoDiEquilibrio_HassaniMarwan
             {
                 counter++;
                 q += step;
-                d = 90 - 4 * q;
-                o = 10 + Math.Pow(q, 3) / 100.0;
+                d = dIniziale - 4 * q;
+                o = oIniziale + Math.Pow(q, 3) / 100.0;
+
                 dataGridView1.Rows.Add(q, d, o);
 
                 double diff = o - d;
@@ -65,7 +85,6 @@ namespace EsePrezzoDiEquilibrio_HassaniMarwan
                 if (o >= d) superato = true;
             }
 
-            // 3) Avvicinamento al punto critico
             double qLimit = 13.9;
             double qTarget = Math.Ceiling(q);
 
@@ -73,27 +92,30 @@ namespace EsePrezzoDiEquilibrio_HassaniMarwan
             {
                 counter++;
                 q += 0.1;
-                d = 90 - 4 * q;
-                o = 10 + Math.Pow(q, 3) / 100.0;
+
+                d = dIniziale - 4 * q;
+                o = oIniziale + Math.Pow(q, 3) / 100.0;
+
                 dataGridView1.Rows.Add(q, d, o);
             }
 
-            // 4) Salto al numero intero e incremento regolare
             q = qTarget;
-            d = 90 - 4 * q;
-            o = 10 + Math.Pow(q, 3) / 100.0;
+            d = dIniziale - 4 * q;
+            o = oIniziale + Math.Pow(q, 3) / 100.0;
+
             dataGridView1.Rows.Add(q, d, o);
 
             while (d > oIniziale && counter < safetyLimit)
             {
                 counter++;
                 q += 1;
-                d = 90 - 4 * q;
-                o = 10 + Math.Pow(q, 3) / 100.0;
+
+                d = dIniziale - 4 * q;
+                o = oIniziale + Math.Pow(q, 3) / 100.0;
+
                 dataGridView1.Rows.Add(q, d, o);
             }
 
-            // 5) Aggiornamento del grafico
             chart1.Series["Domanda"].Points.Clear();
             chart1.Series["Offerta"].Points.Clear();
 
@@ -118,7 +140,6 @@ namespace EsePrezzoDiEquilibrio_HassaniMarwan
             chart1.Titles.Add("Aggiornamento automatico");
             chart1.ChartAreas[0].RecalculateAxesScale();
 
-            // 6) Calcolo del punto di equilibrio
             double equilibrioQ = 0, equilibrioD = 0, equilibrioO = 0;
             bool trovato = false;
 
@@ -139,7 +160,6 @@ namespace EsePrezzoDiEquilibrio_HassaniMarwan
                 }
             }
 
-            // 7) Evidenziazione grafica del punto di equilibrio
             if (trovato)
             {
                 var serieEquilibrio = chart1.Series.Add("Equilibrio");
@@ -149,7 +169,8 @@ namespace EsePrezzoDiEquilibrio_HassaniMarwan
                 serieEquilibrio.Color = Color.Red;
 
                 serieEquilibrio.Points.AddXY(equilibrioQ, equilibrioD);
-                serieEquilibrio.Points[0].Label = $"q={Math.Round(equilibrioQ, 5)}\nd={Math.Round(equilibrioD, 5)}\no={Math.Round(equilibrioO, 5)}";
+                serieEquilibrio.Points[0].Label =
+                    $"q={Math.Round(equilibrioQ, 5)}\nd={Math.Round(equilibrioD, 5)}\no={Math.Round(equilibrioO, 5)}";
                 serieEquilibrio.Points[0].LabelForeColor = Color.Black;
             }
         }
