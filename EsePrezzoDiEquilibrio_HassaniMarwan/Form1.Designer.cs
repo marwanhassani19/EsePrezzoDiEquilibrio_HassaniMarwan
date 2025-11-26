@@ -4,6 +4,24 @@
     {
         private System.ComponentModel.IContainer components = null;
 
+        // 🔹 DICHIARAZIONI CONTROLLI
+        private System.Windows.Forms.Label labelDomanda;
+        private System.Windows.Forms.Label labelOfferta;
+        private System.Windows.Forms.Label labelA;
+        private System.Windows.Forms.Label labelB;
+        private System.Windows.Forms.Label labelDeltaQ;
+
+        private System.Windows.Forms.TextBox textBoxDomanda;
+        private System.Windows.Forms.TextBox textBoxOfferta;
+        private System.Windows.Forms.TextBox textBoxA;
+        private System.Windows.Forms.TextBox textBoxB;
+        private System.Windows.Forms.TextBox textBoxDeltaQ;
+
+        private System.Windows.Forms.DataVisualization.Charting.Chart chart1;
+        private System.Windows.Forms.DataGridView dataGridView1;
+        private System.Windows.Forms.Button button1;
+
+
         protected override void Dispose(bool disposing)
         {
             if (disposing && (components != null))
@@ -13,7 +31,6 @@
             base.Dispose(disposing);
         }
 
-        #region Codice generato da Progettazione Windows Form
 
         private void InitializeComponent()
         {
@@ -21,154 +38,170 @@
             System.Windows.Forms.DataVisualization.Charting.Legend legend1 = new System.Windows.Forms.DataVisualization.Charting.Legend();
             System.Windows.Forms.DataVisualization.Charting.Series series1 = new System.Windows.Forms.DataVisualization.Charting.Series();
             System.Windows.Forms.DataVisualization.Charting.Series series2 = new System.Windows.Forms.DataVisualization.Charting.Series();
-
             this.chart1 = new System.Windows.Forms.DataVisualization.Charting.Chart();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
             this.button1 = new System.Windows.Forms.Button();
-
-            // NUOVI CONTROLLI
             this.labelDomanda = new System.Windows.Forms.Label();
             this.textBoxDomanda = new System.Windows.Forms.TextBox();
             this.labelOfferta = new System.Windows.Forms.Label();
             this.textBoxOfferta = new System.Windows.Forms.TextBox();
-
+            this.labelA = new System.Windows.Forms.Label();
+            this.textBoxA = new System.Windows.Forms.TextBox();
+            this.labelB = new System.Windows.Forms.Label();
+            this.textBoxB = new System.Windows.Forms.TextBox();
+            this.labelDeltaQ = new System.Windows.Forms.Label();
+            this.textBoxDeltaQ = new System.Windows.Forms.TextBox();
             ((System.ComponentModel.ISupportInitialize)(this.chart1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.SuspendLayout();
-
-            // FONT GENERALE FORM
-            this.Font = new System.Drawing.Font("Segoe UI", 10F);
-
+            // 
             // chart1
+            // 
             chartArea1.Name = "ChartArea1";
-            chartArea1.BackColor = System.Drawing.Color.WhiteSmoke;
-            chartArea1.AxisX.MajorGrid.LineColor = System.Drawing.Color.Gainsboro;
-            chartArea1.AxisY.MajorGrid.LineColor = System.Drawing.Color.Gainsboro;
-            chartArea1.AxisX.LabelStyle.Font = new System.Drawing.Font("Segoe UI", 9F);
-            chartArea1.AxisY.LabelStyle.Font = new System.Drawing.Font("Segoe UI", 9F);
             this.chart1.ChartAreas.Add(chartArea1);
-
             legend1.Name = "Legend1";
-            legend1.Font = new System.Drawing.Font("Segoe UI", 9F);
-            legend1.BackColor = System.Drawing.Color.Transparent;
             this.chart1.Legends.Add(legend1);
-
-            this.chart1.Location = new System.Drawing.Point(489, 30);
+            this.chart1.Location = new System.Drawing.Point(480, 30);
             this.chart1.Name = "chart1";
-            this.chart1.Size = new System.Drawing.Size(491, 379);
-            this.chart1.Palette = System.Windows.Forms.DataVisualization.Charting.ChartColorPalette.None;
-
-            // Serie DOMANDA
             series1.ChartArea = "ChartArea1";
             series1.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Line;
-            series1.Color = System.Drawing.Color.RoyalBlue;
-            series1.BorderWidth = 3;
-            series1.MarkerStyle = System.Windows.Forms.DataVisualization.Charting.MarkerStyle.Circle;
-            series1.MarkerSize = 8;
+            series1.Legend = "Legend1";
             series1.Name = "Domanda";
-
-            // Serie OFFERTA
             series2.ChartArea = "ChartArea1";
             series2.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Line;
-            series2.Color = System.Drawing.Color.OrangeRed;
-            series2.BorderWidth = 3;
-            series2.MarkerStyle = System.Windows.Forms.DataVisualization.Charting.MarkerStyle.Circle;
-            series2.MarkerSize = 8;
+            series2.Legend = "Legend1";
             series2.Name = "Offerta";
-
             this.chart1.Series.Add(series1);
             this.chart1.Series.Add(series2);
-
+            this.chart1.Size = new System.Drawing.Size(630, 380);
+            this.chart1.TabIndex = 0;
+            // 
             // dataGridView1
-            this.dataGridView1.AllowUserToAddRows = false;
-            this.dataGridView1.AllowUserToDeleteRows = false;
+            // 
+            this.dataGridView1.Location = new System.Drawing.Point(20, 30);
+            this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.ReadOnly = true;
-            this.dataGridView1.RowHeadersVisible = false;
-
-            this.dataGridView1.Location = new System.Drawing.Point(31, 30);
-            this.dataGridView1.Size = new System.Drawing.Size(452, 379);
-
-            this.dataGridView1.BackgroundColor = System.Drawing.Color.White;
-            this.dataGridView1.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.dataGridView1.GridColor = System.Drawing.Color.LightGray;
-
-            this.dataGridView1.ColumnHeadersDefaultCellStyle.BackColor = System.Drawing.Color.DimGray;
-            this.dataGridView1.ColumnHeadersDefaultCellStyle.ForeColor = System.Drawing.Color.White;
-            this.dataGridView1.ColumnHeadersDefaultCellStyle.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Bold);
-            this.dataGridView1.EnableHeadersVisualStyles = false;
-
-            this.dataGridView1.AlternatingRowsDefaultCellStyle.BackColor = System.Drawing.Color.FromArgb(245, 245, 245);
-            this.dataGridView1.DefaultCellStyle.Font = new System.Drawing.Font("Segoe UI", 10F);
-            this.dataGridView1.DefaultCellStyle.SelectionBackColor = System.Drawing.Color.LightSteelBlue;
-            this.dataGridView1.DefaultCellStyle.SelectionForeColor = System.Drawing.Color.Black;
-
-            this.dataGridView1.RowTemplate.Height = 28;
-
-            // labelDomanda
-            this.labelDomanda.Text = "Domanda iniziale (D₀):";
-            this.labelDomanda.Location = new System.Drawing.Point(31, 420);
-            this.labelDomanda.AutoSize = true;
-
-            // textBoxDomanda
-            this.textBoxDomanda.Location = new System.Drawing.Point(200, 417);
-            this.textBoxDomanda.Size = new System.Drawing.Size(120, 25);
-            this.textBoxDomanda.Text = "90";
-
-            // labelOfferta
-            this.labelOfferta.Text = "Offerta iniziale (O₀):";
-            this.labelOfferta.Location = new System.Drawing.Point(340, 420);
-            this.labelOfferta.AutoSize = true;
-
-            // textBoxOfferta
-            this.textBoxOfferta.Location = new System.Drawing.Point(500, 417);
-            this.textBoxOfferta.Size = new System.Drawing.Size(120, 25);
-            this.textBoxOfferta.Text = "10";
-
+            this.dataGridView1.Size = new System.Drawing.Size(450, 380);
+            this.dataGridView1.TabIndex = 1;
+            // 
             // button1
-            this.button1.Location = new System.Drawing.Point(31, 460);
+            // 
+            this.button1.Location = new System.Drawing.Point(350, 500);
             this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(949, 70);
-            this.button1.Font = new System.Drawing.Font("Segoe UI", 14F, System.Drawing.FontStyle.Bold);
-            this.button1.BackColor = System.Drawing.Color.SteelBlue;
-            this.button1.ForeColor = System.Drawing.Color.White;
-            this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button1.FlatAppearance.BorderSize = 0;
+            this.button1.Size = new System.Drawing.Size(300, 60);
+            this.button1.TabIndex = 12;
             this.button1.Text = "Calcola";
-            this.button1.UseVisualStyleBackColor = false;
             this.button1.Click += new System.EventHandler(this.button1_Click_1);
-
+            // 
+            // labelDomanda
+            // 
+            this.labelDomanda.AutoSize = true;
+            this.labelDomanda.Location = new System.Drawing.Point(20, 430);
+            this.labelDomanda.Name = "labelDomanda";
+            this.labelDomanda.Size = new System.Drawing.Size(143, 19);
+            this.labelDomanda.TabIndex = 2;
+            this.labelDomanda.Text = "Domanda iniziale (D₀):";
+            // 
+            // textBoxDomanda
+            // 
+            this.textBoxDomanda.Location = new System.Drawing.Point(200, 427);
+            this.textBoxDomanda.Name = "textBoxDomanda";
+            this.textBoxDomanda.Size = new System.Drawing.Size(100, 25);
+            this.textBoxDomanda.TabIndex = 3;
+            this.textBoxDomanda.Text = "90";
+            // 
+            // labelOfferta
+            // 
+            this.labelOfferta.AutoSize = true;
+            this.labelOfferta.Location = new System.Drawing.Point(350, 430);
+            this.labelOfferta.Name = "labelOfferta";
+            this.labelOfferta.Size = new System.Drawing.Size(127, 19);
+            this.labelOfferta.TabIndex = 4;
+            this.labelOfferta.Text = "Offerta iniziale (O₀):";
+            // 
+            // textBoxOfferta
+            // 
+            this.textBoxOfferta.Location = new System.Drawing.Point(500, 427);
+            this.textBoxOfferta.Name = "textBoxOfferta";
+            this.textBoxOfferta.Size = new System.Drawing.Size(100, 25);
+            this.textBoxOfferta.TabIndex = 5;
+            this.textBoxOfferta.Text = "10";
+            // 
+            // labelA
+            // 
+            this.labelA.AutoSize = true;
+            this.labelA.Location = new System.Drawing.Point(20, 470);
+            this.labelA.Name = "labelA";
+            this.labelA.Size = new System.Drawing.Size(164, 19);
+            this.labelA.TabIndex = 6;
+            this.labelA.Text = "Coefficiente domanda (a):";
+            // 
+            // textBoxA
+            // 
+            this.textBoxA.Location = new System.Drawing.Point(200, 467);
+            this.textBoxA.Name = "textBoxA";
+            this.textBoxA.Size = new System.Drawing.Size(100, 25);
+            this.textBoxA.TabIndex = 7;
+            this.textBoxA.Text = "-1";
+            // 
+            // labelB
+            // 
+            this.labelB.AutoSize = true;
+            this.labelB.Location = new System.Drawing.Point(350, 470);
+            this.labelB.Name = "labelB";
+            this.labelB.Size = new System.Drawing.Size(147, 19);
+            this.labelB.TabIndex = 8;
+            this.labelB.Text = "Coefficiente offerta (b):";
+            // 
+            // textBoxB
+            // 
+            this.textBoxB.Location = new System.Drawing.Point(500, 467);
+            this.textBoxB.Name = "textBoxB";
+            this.textBoxB.Size = new System.Drawing.Size(100, 25);
+            this.textBoxB.TabIndex = 9;
+            this.textBoxB.Text = "1";
+            // 
+            // labelDeltaQ
+            // 
+            this.labelDeltaQ.AutoSize = true;
+            this.labelDeltaQ.Location = new System.Drawing.Point(20, 510);
+            this.labelDeltaQ.Name = "labelDeltaQ";
+            this.labelDeltaQ.Size = new System.Drawing.Size(161, 19);
+            this.labelDeltaQ.TabIndex = 10;
+            this.labelDeltaQ.Text = "Variazione quantità (ΔQ):";
+            // 
+            // textBoxDeltaQ
+            // 
+            this.textBoxDeltaQ.Location = new System.Drawing.Point(200, 507);
+            this.textBoxDeltaQ.Name = "textBoxDeltaQ";
+            this.textBoxDeltaQ.Size = new System.Drawing.Size(100, 25);
+            this.textBoxDeltaQ.TabIndex = 11;
+            this.textBoxDeltaQ.Text = "10";
+            // 
             // Form1
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1010, 573);
-
-            // AGGIUNTA CONTROLLI ALLA FORM
+            // 
+            this.ClientSize = new System.Drawing.Size(1169, 659);
             this.Controls.Add(this.chart1);
             this.Controls.Add(this.dataGridView1);
-            this.Controls.Add(this.button1);
             this.Controls.Add(this.labelDomanda);
             this.Controls.Add(this.textBoxDomanda);
             this.Controls.Add(this.labelOfferta);
             this.Controls.Add(this.textBoxOfferta);
-
+            this.Controls.Add(this.labelA);
+            this.Controls.Add(this.textBoxA);
+            this.Controls.Add(this.labelB);
+            this.Controls.Add(this.textBoxB);
+            this.Controls.Add(this.labelDeltaQ);
+            this.Controls.Add(this.textBoxDeltaQ);
+            this.Controls.Add(this.button1);
+            this.Font = new System.Drawing.Font("Segoe UI", 10F);
             this.Name = "Form1";
             this.Text = "Prezzo di Equilibrio";
-
             ((System.ComponentModel.ISupportInitialize)(this.chart1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             this.ResumeLayout(false);
+            this.PerformLayout();
+
         }
-
-        #endregion
-
-        private System.Windows.Forms.DataVisualization.Charting.Chart chart1;
-        private System.Windows.Forms.DataGridView dataGridView1;
-        private System.Windows.Forms.Button button1;
-
-        // NUOVE VARIABILI
-        private System.Windows.Forms.TextBox textBoxDomanda;
-        private System.Windows.Forms.TextBox textBoxOfferta;
-        private System.Windows.Forms.Label labelDomanda;
-        private System.Windows.Forms.Label labelOfferta;
     }
 }
